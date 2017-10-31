@@ -1,0 +1,31 @@
+{
+  "name": "fanruan-babel-translater",
+  "version": "0.0.0",
+  "description": "translate es6 to BI format",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://iapyang@github.com/iapYang/fanruan-babel-translater.git"
+  },
+  "keywords": [
+    "babel-plugin"
+  ],
+  "author": "iapyang",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/helper-builder-react-jsx": "7.0.0-beta.5",
+    "@babel/plugin-syntax-jsx": "7.0.0-beta.5",
+    "@babel/core": ">=7.0.0-beta.4 <7.0.0-rc.0"
+  },
+  "devDependencies": {
+    "@babel/helper-plugin-test-runner": "7.0.0-beta.5",
+    "babel-plugin-tester": "^4.0.0"
+  },
+  "bugs": {
+    "url": "https://github.com/iapYang/fanruan-babel-translater/issues"
+  },
+  "homepage": "https://github.com/iapYang/fanruan-babel-translater#readme"
+}
