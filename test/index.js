@@ -1,9 +1,8 @@
 import pluginTester from 'babel-plugin-tester';
-import fineUiTranslator from '../src/index.js';
+import fineUiTranslator from '../src/demo.js';
 
 pluginTester({
   plugin: fineUiTranslator,
-  fixtures: path.join(__dirname, '__fixtures__'),
   tests: {
     'does not change code with no identifiers': '"hello";',
     'changes this code': {
