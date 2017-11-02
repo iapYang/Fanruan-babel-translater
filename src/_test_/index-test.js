@@ -9,5 +9,6 @@ if (foo) console.log(foo);
 
 it('works', () => {
   const {code} = babel.transform(example, {plugins: [plugin]});
+  console.log('fhdidhsfihdsifhidfs', {code});
   expect(code).toMatchSnapshot();
 });
