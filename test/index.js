@@ -1,8 +1,7 @@
 import pluginTester from 'babel-plugin-tester';
-import fineUiTranslator from '../src/demo.js';
 
 pluginTester({
-  plugin: fineUiTranslator,
+  plugin: identifierReversePlugin,
   tests: {
     'does not change code with no identifiers': '"hello";',
     'changes this code': {
@@ -17,3 +16,16 @@ pluginTester({
     },
   },
 });
+
+// normally you would import this from your plugin module
+function identifierReversePlugin() {
+  return {
+    name: 'identifier reverse',
+    describe: 'djosajfoajdsofj',
+    visitor: {
+      Identifier(idPath) {
+        idPath.node.name = idPath.node.name.split('').reverse().join('')
+      },
+    },
+  }
+}

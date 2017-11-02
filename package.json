@@ -4,7 +4,7 @@
   "description": "translate es6 to BI format",
   "main": "index.js",
   "scripts": {
-    "test": "babel-node test/index.js"
+    "demo-test": "jest ./src/_test_/index-test.js"
   },
   "repository": {
     "type": "git",
@@ -28,7 +28,8 @@
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
     "babel-plugin-transform-es2015-parameters": "^6.24.1",
     "babel-plugin-transform-es2015-spread": "^6.22.0",
-    "babel-plugin-transform-strict-mode": "^6.24.1"
+    "babel-plugin-transform-strict-mode": "^6.24.1",
+    "jest": "^21.2.1"
   },
   "bugs": {
     "url": "https://github.com/iapYang/fanruan-babel-translater/issues"
