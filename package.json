@@ -4,6 +4,7 @@
   "description": "translate es6 to BI format",
   "main": "index.js",
   "scripts": {
+    "jsx-test": "babel-node ./src/babel-jsx/index-test.js",
     "demo-test": "node ./src/demo/index-test.js"
   },
   "repository": {
@@ -20,6 +21,9 @@
     "@babel/plugin-syntax-jsx": "7.0.0-beta.5"
   },
   "devDependencies": {
+    "@babel/helper-builder-react-jsx": "^7.0.0-beta.5",
+    "@babel/plugin-syntax-jsx": "^7.0.0-beta.5",
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0"
   },
   "bugs": {
