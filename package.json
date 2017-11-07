@@ -4,7 +4,7 @@
   "description": "translate es6 to BI format",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "demo-test": "node ./src/demo/index-test.js"
   },
   "repository": {
     "type": "git",
