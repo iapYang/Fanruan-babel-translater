@@ -1,14 +1,11 @@
-// src/__tests__/index-test.js
 const babel = require('babel-core');
-const plugin = require('../');
+const plugin = require('./index.js');
 
 var example = `
-var foo = 1;
-if (foo) console.log(foo);
+    var foo = 1;
+    if (foo) console.log(foo);
 `;
 
-it('works', () => {
-  const {code} = babel.transform(example, {plugins: [plugin]});
-  console.log('fhdidhsfihdsifhidfs', {code});
-  expect(code).toMatchSnapshot();
-});
+const {code} = babel.transform(example, {plugins: [plugin]});
+
+console.info(code);

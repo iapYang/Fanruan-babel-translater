@@ -20,8 +20,7 @@
     "@babel/plugin-syntax-jsx": "7.0.0-beta.5"
   },
   "devDependencies": {
-    "babel-plugin-tester": "^4.0.0",
-    "jest": "^21.2.1"
+    "babel-core": "^6.26.0"
   },
   "bugs": {
     "url": "https://github.com/iapYang/fanruan-babel-translater/issues"
