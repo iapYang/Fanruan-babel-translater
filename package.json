@@ -4,7 +4,7 @@
   "description": "translate es6 to BI format",
   "main": "index.js",
   "scripts": {
-    "demo-test": "jest -u"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,7 @@
     "@babel/plugin-syntax-jsx": "7.0.0-beta.5"
   },
   "devDependencies": {
+    "babel-plugin-tester": "^4.0.0",
     "jest": "^21.2.1"
   },
   "bugs": {
