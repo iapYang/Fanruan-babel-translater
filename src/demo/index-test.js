@@ -1,11 +1,11 @@
 const babel = require('babel-core');
+const jsx = require('babel-plugin-transform-react-jsx');
 const plugin = require('./index.js');
 
 var example = `
-    var foo = 1;
-    if (foo) console.log(foo);
+    const foo = <div>lol</div>
 `;
 
-const {code} = babel.transform(example, {plugins: [plugin]});
+const {code} = babel.transform(example, {plugins: [jsx, plugin]});
 
 console.info(code);
