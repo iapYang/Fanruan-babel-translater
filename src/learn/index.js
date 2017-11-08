@@ -13,11 +13,15 @@ module.exports = function testPlugin({ types: t }) {
         
                 console.log("Visiting Identifier: " + path.node.name);
         
-                for (key in path.node) {
+                for (key in path.params) {
                     console.log(key, path.parent[key]);
                 }
         
                 console.log('=======================');
+            },
+
+            MemberExpression(path) {
+                console.log(`Visiting MemberExpression ${path.node}`);
             },
         
             BinaryExpression(path) {
