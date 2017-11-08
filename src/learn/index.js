@@ -1,17 +1,28 @@
 // 向下遍历访问节点，向上遍历退出节点
-const MyVisitor = {
-    Identifier: {
-        enter() {
-            console.log("Entered!");
-        },
-        exit() {
-            console.log("Exited!");
-        }
-    }
-};
-
-module.exports = function testPlugin(babel) {
+module.exports = function testPlugin({ types: t }) {
     return {
-        visitor: MyVisitor,
+        visitor: {
+            FunctionDeclaration(path) {
+                console.log("Visiting FunctionDeclaration: " + path.node.name);
+            },
+        
+            Identifier(path) {
+                if (t.isIdentifier(path.node, { name: "React" })) {
+                    path.node.name = "BI";
+                }
+        
+                console.log("Visiting Identifier: " + path.node.name);
+        
+                for (key in path.node) {
+                    console.log(key, path.parent[key]);
+                }
+        
+                console.log('=======================');
+            },
+        
+            BinaryExpression(path) {
+                console.log("Visiting BinaryExpression: " + path.node.name);
+            }
+        },
     }
 }

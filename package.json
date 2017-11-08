@@ -4,7 +4,6 @@
   "description": "translate es6 to BI format",
   "main": "index.js",
   "scripts": {
-    "jsx-test": "babel-node ./src/babel-jsx/index-test.js",
     "demo-test": "node ./src/demo/index-test.js",
     "learn-test": "node ./src/learn/index-test.js"
   },
