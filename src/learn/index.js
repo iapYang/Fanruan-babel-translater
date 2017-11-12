@@ -2,31 +2,35 @@
 module.exports = function testPlugin({ types: t }) {
     return {
         visitor: {
-            FunctionDeclaration(path) {
-                console.log("Visiting FunctionDeclaration: " + path.node.name);
+            Identifier(path) {},
+
+            CallExpression(path) {
+                const node = path.node;
+                
+                
             },
-        
-            Identifier(path) {
-                if (t.isIdentifier(path.node, { name: "React" })) {
-                    path.node.name = "BI";
-                }
-        
-                console.log("Visiting Identifier: " + path.node.name);
-        
-                for (key in path.params) {
-                    console.log(key, path.parent[key]);
-                }
-        
-                console.log('=======================');
+
+            Literal(path) {
+                let node = path.node;
+
+                path.insertBefore(t.objectExpression([t.objectProperty(t.identifier('type'), t.identifier('key'))]));
             },
 
             MemberExpression(path) {
-                console.log(`Visiting MemberExpression ${path.node}`);
+                for (key in path.node) {
+                    let value = path.node[key];
+
+                    if (t.isIdentifier(value, {
+                        name: 'React'
+                    })) {
+                        value.name = 'BI';
+                    } else if (t.isIdentifier(value, {
+                        name: 'createElement'
+                    })) {
+                        value.name = 'createWidget';
+                    }
+                }
             },
-        
-            BinaryExpression(path) {
-                console.log("Visiting BinaryExpression: " + path.node.name);
-            }
         },
     }
 }
