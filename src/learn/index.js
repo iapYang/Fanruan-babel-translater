@@ -7,28 +7,28 @@ module.exports = function testPlugin({ types: t }) {
             CallExpression(path) {
                 const node = path.node;
                 
-                
-            },
-
-            Literal(path) {
-                let node = path.node;
-
-                path.insertBefore(t.objectExpression([t.objectProperty(t.identifier('type'), t.identifier('key'))]));
+                path.replaceWith(t.memberExpression(
+                    t.identifier('BI'),
+                    t.identifier('createWidget')
+                ), [t.objectExpression([
+                    t.objectProperty(t.identifier('type'), t.stringLiteral('bi.label'))
+                ])]);
             },
 
             MemberExpression(path) {
-                for (key in path.node) {
-                    let value = path.node[key];
+                const node = path.node;
 
-                    if (t.isIdentifier(value, {
-                        name: 'React'
-                    })) {
-                        value.name = 'BI';
-                    } else if (t.isIdentifier(value, {
-                        name: 'createElement'
-                    })) {
-                        value.name = 'createWidget';
-                    }
+                if (t.isIdentifier(node.object, {
+                    name: 'React'
+                }) && t.isIdentifier(node.property, {
+                    name: 'createElement'
+                })) {
+                    path.replaceWith(
+                        t.memberExpression(
+                            t.identifier('BI'),
+                            t.identifier('createWidget')
+                        )
+                    );
                 }
             },
         },
