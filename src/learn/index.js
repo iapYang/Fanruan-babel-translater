@@ -1,6 +1,8 @@
 // 向下遍历访问节点，向上遍历退出节点
 module.exports = function testPlugin({ types: t }) {
     return {
+        inherits: require('babel-plugin-transform-react-jsx'),
+
         visitor: {
             CallExpression(path) {
                 const node = path.node;

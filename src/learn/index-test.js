@@ -13,6 +13,6 @@ var example = `
         </htape>
 `;
 
-const {code} = babel.transform(example, {plugins: [jsx, plugin]});
+const {code} = babel.transform(example, {plugins: [plugin]});
 
 console.info(code);
