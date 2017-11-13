@@ -2,7 +2,7 @@
 module.exports = function testPlugin({ types: t }) {
     return {
         visitor: {
-            /* CallExpression(path) {
+            CallExpression(path) {
                 const node = path.node;
                 const callee = node.callee;
                 const arguments = node.arguments;
@@ -47,7 +47,7 @@ module.exports = function testPlugin({ types: t }) {
                         ])
                     );
                 }
-            }, */
+            },
         },
     }
 }
