@@ -18,10 +18,12 @@ module.exports = function testPlugin({ types: t }) {
                     arguments.forEach((argument, index) => {
                         if (t.isLiteral(argument)) {
                             if (index) {
-                                objectProperties.push(t.objectProperty(
-                                    t.identifier('text'),
-                                    t.stringLiteral(argument.value)
-                                ));
+                                if (typeof argument.value !== 'undefined') {
+                                    objectProperties.push(t.objectProperty(
+                                        t.identifier('text'),
+                                        t.stringLiteral(argument.value)
+                                    ));
+                                }
                             } else {
                                 objectProperties.push(t.objectProperty(
                                     t.identifier('type'),
@@ -35,6 +37,11 @@ module.exports = function testPlugin({ types: t }) {
                                     t.stringLiteral(property.value.value)
                                 ));
                             })
+                        } else if (t.isCallExpression(argument)) {
+                            objectProperties.push(t.objectProperty(
+                                t.identifier('items'),
+                                t.arrayExpression([argument])
+                            ));
                         }
                     });
 
