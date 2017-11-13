@@ -14,6 +14,7 @@ module.exports = function testPlugin({ types: t }) {
                         name: 'createElement'
                     })) {
                     const objectProperties = [];
+                    const children = [];
 
                     arguments.forEach((argument, index) => {
                         if (t.isLiteral(argument)) {
@@ -38,12 +39,16 @@ module.exports = function testPlugin({ types: t }) {
                                 ));
                             })
                         } else if (t.isCallExpression(argument)) {
-                            objectProperties.push(t.objectProperty(
-                                t.identifier('items'),
-                                t.arrayExpression([argument])
-                            ));
+                            children.push(argument);
                         }
                     });
+
+                    if (children.length) {
+                        objectProperties.push(t.objectProperty(
+                            t.identifier('items'),
+                            t.arrayExpression(children)
+                        ));
+                    }
 
                     path.replaceWith(t.callExpression(
                         t.memberExpression(
