@@ -2,7 +2,7 @@
 module.exports = function testPlugin({ types: t }) {
     return {
         visitor: {
-            CallExpression(path) {
+            /* CallExpression(path) {
                 const node = path.node;
                 const callee = node.callee;
                 const arguments = node.arguments;
@@ -15,12 +15,19 @@ module.exports = function testPlugin({ types: t }) {
                     })) {
                     const objectProperties = [];
 
-                    arguments.forEach(argument => {
+                    arguments.forEach((argument, index) => {
                         if (t.isLiteral(argument)) {
-                            objectProperties.push(t.objectProperty(
-                                t.identifier('type'),
-                                t.stringLiteral(`bi.${argument.value}`)
-                            ));
+                            if (index) {
+                                objectProperties.push(t.objectProperty(
+                                    t.identifier('text'),
+                                    t.stringLiteral(argument.value)
+                                ));
+                            } else {
+                                objectProperties.push(t.objectProperty(
+                                    t.identifier('type'),
+                                    t.stringLiteral(`bi.${argument.value}`)
+                                ));
+                            }
                         } else if (t.isObjectExpression(argument)) {
                             argument.properties.forEach(property => {
                                 objectProperties.push(t.objectProperty(
@@ -40,7 +47,7 @@ module.exports = function testPlugin({ types: t }) {
                         ])
                     );
                 }
-            },
+            }, */
         },
     }
 }
