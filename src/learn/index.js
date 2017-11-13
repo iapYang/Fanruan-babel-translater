@@ -2,32 +2,42 @@
 module.exports = function testPlugin({ types: t }) {
     return {
         visitor: {
-            Identifier(path) {},
-
             CallExpression(path) {
                 const node = path.node;
-                
-                path.replaceWith(t.memberExpression(
-                    t.identifier('BI'),
-                    t.identifier('createWidget')
-                ), [t.objectExpression([
-                    t.objectProperty(t.identifier('type'), t.stringLiteral('bi.label'))
-                ])]);
-            },
+                const callee = node.callee;
+                const arguments = node.arguments;
 
-            MemberExpression(path) {
-                const node = path.node;
+                if (t.isMemberExpression(callee)
+                    && t.isIdentifier(callee.object, {
+                        name: 'React'
+                    }) && t.isIdentifier(callee.property, {
+                        name: 'createElement'
+                    })) {
+                    const objectProperties = [];
 
-                if (t.isIdentifier(node.object, {
-                    name: 'React'
-                }) && t.isIdentifier(node.property, {
-                    name: 'createElement'
-                })) {
-                    path.replaceWith(
+                    arguments.forEach(argument => {
+                        if (t.isLiteral(argument)) {
+                            objectProperties.push(t.objectProperty(
+                                t.identifier('type'),
+                                t.stringLiteral(`bi.${argument.value}`)
+                            ));
+                        } else if (t.isObjectExpression(argument)) {
+                            argument.properties.forEach(property => {
+                                objectProperties.push(t.objectProperty(
+                                    t.identifier(property.key.name),
+                                    t.stringLiteral(property.value.value)
+                                ));
+                            })
+                        }
+                    });
+
+                    path.replaceWith(t.callExpression(
                         t.memberExpression(
                             t.identifier('BI'),
                             t.identifier('createWidget')
-                        )
+                        ), [
+                            t.objectExpression(objectProperties)
+                        ])
                     );
                 }
             },
