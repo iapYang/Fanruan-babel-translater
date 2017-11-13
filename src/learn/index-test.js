@@ -4,13 +4,13 @@ const plugin = require('./index.js');
 
 var example = `
     const a = 
-        <label>
-            <button></button>
-            <tree>
-                <label>1234455</label>
-            </tree>
-            <button>123</button>
-        </label>
+        <htape>
+            <button width="40"></button>
+            <center width="fill">
+                <label width="30">1234455</label>
+            </center>
+            <button  width="40">123</button>
+        </htape>
 `;
 
 const {code} = babel.transform(example, {plugins: [jsx, plugin]});
