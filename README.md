@@ -68,4 +68,4 @@ function square(n) {
 
 ## 项目地址
 
-[Github](https://github.com/iapYang/fanruan-babel-translater)
+[Github项目地址](https://github.com/iapYang/fanruan-babel-translater)
