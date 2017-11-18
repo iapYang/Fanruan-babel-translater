@@ -2,7 +2,7 @@ const babel = require('babel-core');
 const jsx = require('babel-plugin-transform-react-jsx');
 const plugin = require('./index.js');
 
-var example = `
+const example = `
     const a = 
         <htape>
             <button width="40"></button>

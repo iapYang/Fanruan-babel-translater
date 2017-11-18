@@ -120,12 +120,26 @@ const MyVisitor = {
 
 所以当创建访问者时你实际上有两次机会来访问一个节点
 
+## 实践
+
+[babel-types的AP文档](https://github.com/babel/babel/tree/master/packages/babel-types)，大部分需要的API在这里都可以找到。
+
+首先，根据AST树结构。通过`babel-plugin-transform-react-jsx`转译的jsx语法会变成以下结构：
+
+```javascript
+React.createElement(tag, attritubtes, child);
+```
+
+通过学习AST树可知`React.createElement`整个方法是在`CallExpression`节点被创建和访问的。
+
+要想替换成[FineUI](https://github.com/fanruan/fineui)中结构，其实只要替换`CallExpression`节点。
+
 ## 学习资料
 
 - [babel转换jsx源码](https://github.com/babel/babel/blob/master/packages/babel-plugin-transform-react-jsx/src/index.js)
 - [关于jsx](https://jasonformat.com/wtf-is-jsx/)
 - [babel开发者手册](https://github.com/thejameskyle/babel-handbook/blob/master/translations/zh-Hans/plugin-handbook.md)
-- [babel-types的AP文档I](https://github.com/babel/babel/tree/master/packages/babel-types)
+- [babel-types的AP文档](https://github.com/babel/babel/tree/master/packages/babel-types)
 - [可视化AST树](http://astexplorer.net/)
 
 
